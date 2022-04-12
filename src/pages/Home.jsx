@@ -1,11 +1,11 @@
 import "../App.css";
-import logo from "../images/logo.svg";
+import TopBar from "../components/TopBar";
 
 function Home() {
   return (
     <div className="App">
+      <TopBar/>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
