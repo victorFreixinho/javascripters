@@ -1,0 +1,6 @@
+.map-container {
+  /* Important! Always set the container height explicitly */
+  height: 500px;
+  width: 800px;
+  margin: auto;
+}
