@@ -2,6 +2,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ScrollContext } from "react-router-scroll-4";
 import Home from "./pages/Home";
 import UserList from "./components/users/UserList";
+import SignUp from "./pages/signUp"
 
 function App() {
   return (
@@ -13,6 +14,11 @@ function App() {
             exact
             path={`${process.env.PUBLIC_URL}/users`}
             component={UserList}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/signup`}
+            component={SignUp}
           />
           <Route path="*" element={<div>default</div>} />
         </Switch>
