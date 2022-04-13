@@ -3,6 +3,7 @@ import { ScrollContext } from "react-router-scroll-4";
 import Home from "./pages/Home";
 import UserList from "./components/users/UserList";
 import SignUp from "./pages/signUp";
+import DesearseList from "./components/desearses/DesearseList";
 import OMForm from "./pages/OMForm";
 import DoencaForm from "./pages/DoencaForm";
 
@@ -21,6 +22,11 @@ function App() {
             exact
             path={`${process.env.PUBLIC_URL}/signup`}
             component={SignUp}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/desearses`}
+            component={DesearseList}
           />
           <Route
             exact
