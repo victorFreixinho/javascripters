@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import UserList from "./components/users/UserList";
 import SignUp from "./pages/signUp";
 import DesearseList from "./components/desearses/DesearseList";
+import OMForm from "./pages/OMForm";
+import DoencaForm from "./pages/DoencaForm";
 
 function App() {
   return (
@@ -25,6 +27,16 @@ function App() {
             exact
             path={`${process.env.PUBLIC_URL}/desearses`}
             component={DesearseList}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/admin-om`}
+            component={OMForm}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/admin-doenca`}
+            component={DoencaForm}
           />
           <Route path="*" element={<div>default</div>} />
         </Switch>

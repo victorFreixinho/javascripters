@@ -1,10 +1,11 @@
+import React from "react";
 import "../App.css";
 import TopBar from "../components/TopBar";
 
 function Home() {
   return (
     <div className="App">
-      <TopBar/>
+      <TopBar />
     </div>
   );
 }
