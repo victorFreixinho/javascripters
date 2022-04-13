@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 
 import Breadcrumb from "../../common/breadcrumb";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import AddButton from "../../common/AddButton";
 import DesearseTable from "./DesearseTable";
+import TopBar from "../../TopBar";
 
 const DesearseList = () => {
   const desearses = [
@@ -24,12 +25,13 @@ const DesearseList = () => {
     },
   ];
 
-  const history = useHistory();
-  const goToAddDesearse = () =>
-    history.push(`${process.env.PUBLIC_URL}/desearses/add`);
+  //  const history = useHistory();
+  //   const goToAddDesearse = () =>
+  //     history.push(`${process.env.PUBLIC_URL}/desearses/add`);
 
   return (
     <>
+      <TopBar />
       <Breadcrumb title="Gestão de Doenças" current="Gestão de Doenças" />
       <div className="container-fluid">
         <div className="row">
@@ -42,7 +44,7 @@ const DesearseList = () => {
                   </div>
                   <div className="col text-end">
                     <AddButton
-                      onClick={goToAddDesearse}
+                      //onClick={goToAddDesearse}
                       toolTipMsg={"Adicionar uma nova Doença"}
                     ></AddButton>
                   </div>

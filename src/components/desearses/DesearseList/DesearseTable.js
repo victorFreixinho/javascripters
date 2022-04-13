@@ -1,16 +1,16 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
 //import { useDispatch, useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
-import { Trash2, User } from "react-feather";
+import { Trash2 } from "react-feather";
 import { Button, Badge } from "reactstrap";
 
 import Modal from "../../common/modal";
 
 function DesearseTable({ DesearseList }) {
-  const history = useHistory();
+  //const history = useHistory();
 
   const [modal, setModal] = useState({ show: false, user: {} });
   const [desearseId, setDesearseId] = useState(null);
@@ -44,8 +44,8 @@ function DesearseTable({ DesearseList }) {
     }
   }, [removedDesearse?.data]);
 
-  const goToDetails = (desearse) =>
-    history.push(`${process.env.PUBLIC_URL}/desearses/${desearse.id}`);
+  //   const goToDetails = (desearse) =>
+  //     history.push(`${process.env.PUBLIC_URL}/desearses/${desearse.id}`);
 
   const removeDesearse = (desearse) => (e) => {
     e.stopPropagation();
@@ -72,7 +72,7 @@ function DesearseTable({ DesearseList }) {
           </thead>
           <tbody style={{ cursor: "pointer" }}>
             {DesearseList.map((desearse) => (
-              <tr key={desearse.id} onClick={goToDetails(desearse)}>
+              <tr key={desearse.id} /*onClick={goToDetails(desearse)}*/>
                 <td data-testid="user-name">
                   <CoronavirusIcon
                     size={17}
