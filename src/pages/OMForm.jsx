@@ -5,10 +5,13 @@ import { AppBar, Toolbar } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import TopBar from "../components/TopBar";
+import {Button} from 'react-bootstrap';
 
 export default function Inputs() {
   return (
     <>
+      <TopBar />
       <Box
         component="span"
         sx={{
@@ -68,11 +71,14 @@ export default function Inputs() {
           />
           <TextField
             id="outlined-read-only-input"
-            label="RegiaoOM"
-            defaultValue="Hello World"
+            label="RegiãoOM"
+            defaultValue="Norte"
           />
         </div>
       </Box>
+      <div style={{margin: "50px"}}>
+        <Button variant="primary" size="lg">Registrar</Button>{' '}
+      </div>
     </>
   );
 }

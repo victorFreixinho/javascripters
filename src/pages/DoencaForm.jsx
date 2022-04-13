@@ -5,10 +5,13 @@ import { AppBar, Toolbar } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import TopBar from '../components/TopBar';
+import {Button} from 'react-bootstrap';
 
 export default function Inputs() {
   return (
     <>
+      <TopBar />
       <Box
         component="span"
         sx={{
@@ -28,7 +31,7 @@ export default function Inputs() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" component="div">
-              CRUD Doencas
+              CRUD Doenças
             </Typography>
           </Toolbar>
         </AppBar>
@@ -45,7 +48,7 @@ export default function Inputs() {
           <TextField
             required
             id="outlined-required"
-            label="Doenca"
+            label="Doença"
             defaultValue="COVID"
           />
           <TextField
@@ -58,18 +61,21 @@ export default function Inputs() {
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 10, width: "15ch" },
+          "& .MuiTextField-root": { m: 5, width: "40ch" },
         }}
         noValidate
         autoComplete="off"
       >
         <TextField
           id="outlined-multiline-flexible"
-          label="Descricao"
+          label="Descricão"
           multiline
           minRows={4}
         />
       </Box>
+      <div style={{margin: "50px"}}>
+        <Button variant="primary" size="lg">Registrar</Button>{' '}
+      </div>
     </>
   );
 }
