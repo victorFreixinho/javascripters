@@ -1,5 +1,4 @@
 import React from "react";
-import "../App.css";
 import TopBar from "../components/TopBar";
 import mapa from "../images/mapa_img.jpeg";
 import {Form, Button} from 'react-bootstrap';
