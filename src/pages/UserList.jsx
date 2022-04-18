@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 
-import Breadcrumb from "../../common/breadcrumb";
+import Breadcrumb from "../components/Breadcrumb";
 import { useNavigate } from "react-router-dom";
+
 const UserList = () => {
   const navigate = useNavigate();
   const goToAddUser = () => navigate.push(`${process.env.PUBLIC_URL}/users/add`);
