@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 import { Home } from "react-feather";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //import Bookmark from "./bookmark";
 
 const Breadcrumb = ({ title, parent, current }) => {
-	let history = useHistory();
+	let navigate = useNavigate();
 	return (
 		<Fragment>
 			<div className="container-fluid">
@@ -22,7 +22,7 @@ const Breadcrumb = ({ title, parent, current }) => {
 									{parent && (
 										<li
 											className="breadcrumb-item"
-											onClick={() => history.goBack()}
+											onClick={() => navigate.goBack()}
 											style={{ cursor: "pointer" }}
 										>
 											{parent}

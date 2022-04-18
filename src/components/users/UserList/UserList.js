@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 
 import Breadcrumb from "../../common/breadcrumb";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const UserList = () => {
-  const history = useHistory();
-  const goToAddUser = () => history.push(`${process.env.PUBLIC_URL}/users/add`);
+  const navigate = useNavigate();
+  const goToAddUser = () => navigate.push(`${process.env.PUBLIC_URL}/users/add`);
 
   return (
     <>
