@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes, Outlet } from "react-router-dom";
 
 import Home from "./pages/Home";
-import UserList from "./components/users/UserList";
+import UserList from "./pages/UserList";
 import SignUp from "./pages/SignUp";
 import OMForm from "./pages/OMForm";
 import DoencaForm from "./pages/DoencaForm";
