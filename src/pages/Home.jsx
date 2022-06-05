@@ -1,14 +1,24 @@
 import React from "react";
-import "../App.css";
-import TopBar from "../components/TopBar";
+import "../styles/App.css";
 import mapa from "../images/mapa_img.jpeg";
 import {Form, Button} from 'react-bootstrap';
+
+import TopBar from "../components/TopBar";
+import MapFilter from '../components/MapFilter';
+import Map from '../components/Map';
 
 function Home() {
   return (
     <div className="App">
       <TopBar />
-      <br />
+
+      <div style={{ display: "flex", 	flexWrap: "wrap" }}>
+        <MapFilter />
+        <Map />
+      </div>
+
+      
+      {/* <br />
       <div style={{display: "flex"}}>
         <div className="shadow-lg p-1 rounded" style={{backgroundColor: "white", height: "400px", width: "50%", margin: "20px"}}>
           <div style={{padding: "30px"}}>
@@ -34,7 +44,7 @@ function Home() {
         <div style={{backgroundColor: "white", height: "400px", width: "50%", border: "1px solid black", margin: "20px"}}>
           <img src={mapa} alt="mapa-img" style={{width: "100%", height: "100%"}}/>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -1,0 +1,14 @@
+.h1_title {
+    font-size: 25px;
+    padding-top: 5px; 
+}
+
+.vertical_bar {
+    border-left: 1px solid black;
+    height: 30px;
+}
+
+.h2_subtitle {
+    font-size: 23px;
+    padding-top: 5px;
+}
