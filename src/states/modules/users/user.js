@@ -3,6 +3,7 @@ import api from "../../../api";
 
 export const register = createAsyncThunk("user/register", async (payload) => {
   const { history, ...formData } = payload;
+  console.log("FormData: ", formData);
   const user = await api.register(formData);
   return { ...user, history };
 });
@@ -28,6 +29,7 @@ const userSlice = createSlice({
       state.error = payload.error;
     },
     [register.fulfilled]: (state, { payload }) => {
+      console.log("payload: ", payload);
       state.email = payload.email;
       state.userId = payload.userId;
       state.name = payload.name;

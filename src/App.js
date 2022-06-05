@@ -32,7 +32,7 @@ function App() {
           />
           <Route
             exact
-            path={`${process.env.PUBLIC_URL}/desearses`}
+            path={`${process.env.PUBLIC_URL}/diseases`}
             component={DesearseList}
           />
           <Route

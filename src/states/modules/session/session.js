@@ -4,6 +4,7 @@ import api from "../../../api";
 export const login = createAsyncThunk("session/login", async (payload) => {
   const { email, password, history } = payload;
   const session = await api.login({ email, password });
+  console.log("Resposta: ", session);
   return { ...session, history };
 });
 
@@ -33,6 +34,7 @@ const sessionSlice = createSlice({
       state.error = null;
       state.loading = false;
       state.signed = true;
+      console.log("Signed: ", state.signed);
       payload.history.push("/");
     },
   },

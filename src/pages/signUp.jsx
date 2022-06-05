@@ -45,7 +45,8 @@ export default function SignUp({ history }) {
         email: data.get("email"),
         password: data.get("password"),
         name: data.get("firstName"),
-        lastName: data.get("lastName"),
+        lastname: data.get("lastName"),
+        token: null,
         history,
       })
     );

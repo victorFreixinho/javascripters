@@ -5,11 +5,11 @@ import styles from "./styles/TopBar.module.css";
 
 function TopBar() {
   return (
-    <Navbar bg="light" expand="lg" className="shadow-sm p-1">
+    <Navbar bg="light" expand="md" className="shadow-md p-1">
       <Container>
         <Navbar.Brand
           href="/"
-          className="d-flex align-items-center justify-content-center"
+          className="d-flex justify-content-start align-items-center "
         >
           <img
             src={logo}

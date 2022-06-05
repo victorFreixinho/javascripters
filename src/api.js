@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const url = "//localhost:7091";
+const url = "https://localhost:7091";
 const api = axios.create({ baseURL: url });
 
 const Api = {
   login: ({ email, password }) =>
     api
-      .post("/users/login", { email, password })
+      .post("/user/login", { email, password })
       .then((response) => {
         return { ...response.data };
       })
@@ -14,9 +14,9 @@ const Api = {
         return error;
       }),
 
-  register: ({ payload }) =>
+  register: ({ email, password, lastname, name }) =>
     api
-      .post("/users/register", { payload })
+      .post("/user/register", { email, password, lastname, name })
       .then((response) => {
         return { ...response.data };
       })
