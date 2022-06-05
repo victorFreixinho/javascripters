@@ -10,17 +10,24 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../states/modules/session";
 
 const theme = createTheme();
 
-export default function Login() {
+export default function Login({ history }) {
+  const dispatch = useDispatch();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    dispatch(
+      login({
+        email: data.get("email"),
+        password: data.get("password"),
+        history,
+      })
+    );
   };
 
   return (

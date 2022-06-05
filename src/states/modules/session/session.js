@@ -2,8 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../../api";
 
 export const login = createAsyncThunk("session/login", async (payload) => {
-  const session = await api.login(payload);
-  return session;
+  const { email, password, history } = payload;
+  const session = await api.login({ email, password });
+  return { ...session, history };
 });
 
 const sessionSlice = createSlice({
@@ -32,6 +33,7 @@ const sessionSlice = createSlice({
       state.error = null;
       state.loading = false;
       state.signed = true;
+      payload.history.push("/");
     },
   },
 });
