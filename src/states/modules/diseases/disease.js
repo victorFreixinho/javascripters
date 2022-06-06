@@ -21,6 +21,11 @@ export const deleteDisease = createAsyncThunk(
   async (disease) => await api.deleteDisease(disease)
 );
 
+export const setCsvData = createAsyncThunk(
+  "diseases/upload",
+  async (payload) => await api.deleteDisease(payload)
+);
+
 export const createDisease = createAsyncThunk(
   "diseases/create",
   async (disease) => {
@@ -80,6 +85,20 @@ const diseasesSlice = createSlice({
       state.error = error;
     },
     [deleteDisease.fulfilled]: (state, response) => {
+      console.log("Response: ", response);
+      state.error = null;
+      state.loading = false;
+    },
+
+    [setCsvData.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [setCsvData.rejected]: (state, error) => {
+      state.loading = false;
+      state.error = error;
+    },
+    [setCsvData.fulfilled]: (state, response) => {
       console.log("Response: ", response);
       state.error = null;
       state.loading = false;

@@ -10,6 +10,7 @@ import OMForm from "./pages/OMForm";
 import DoencaForm from "./pages/DoencaForm";
 import UploadData from "./pages/UploadData";
 import { selectSigned } from "./states/modules/session/session.utils";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const signed = useSelector(selectSigned);
@@ -54,7 +55,7 @@ function App() {
             path={`${process.env.PUBLIC_URL}/admin-doenca`}
             component={DoencaForm}
           />
-          <Route path="*" element={<div>default</div>} />
+          <Route path="*" component={NotFound} />
         </Switch>
       </ScrollContext>
     </BrowserRouter>

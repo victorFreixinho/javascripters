@@ -4,6 +4,8 @@ import {useCallback} from 'react';
 import styled from 'styled-components';
 import TopBar from '../components/TopBar';
 import Typography from "@mui/material/Typography";
+import { useDispatch, useSelector } from "react-redux";
+import { setCsvData } from "../states/modules/diseases";
 
 const getColor = (props) => {
   if (props.isDragAccept) {
@@ -35,17 +37,23 @@ const Container = styled.div`
 `;
 
 function UploadData(props) {
+  const dispatch = useDispatch();
+  const handleSubmit = (binaryStr) => {
+    dispatch(
+      setCsvData(binaryStr)
+    );
+  };
+
   const onDrop = useCallback((acceptedFiles) => {
-    console.log("cu")
       acceptedFiles.forEach((file) => {
         const reader = new FileReader()
   
         reader.onabort = () => console.log('file reading was aborted')
         reader.onerror = () => console.log('file reading has failed')
         reader.onload = () => {
-        // Do whatever you want with the file contents
+          // Do whatever you want with the file contents
           const binaryStr = reader.result
-          console.log(binaryStr)
+          handleSubmit(binaryStr)
         }
         reader.readAsArrayBuffer(file)
       })
