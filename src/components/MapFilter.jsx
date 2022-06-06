@@ -135,9 +135,9 @@ function MapFilter() {
         {occurrences.length}
       </Typography>
 
-      <Box>
+      {/* <Box>
         <Button variant="contained">Gerar relatório em PDF</Button>
-      </Box>
+      </Box> */}
     </Card>
   );
 }
