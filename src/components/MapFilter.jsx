@@ -13,7 +13,7 @@ import { selectOccurrences } from "../states/modules/diseases/disease.utils";
 function MapFilter() {
     const dispatch = useDispatch();
 
-    const occurrences = useSelector(selectOccurrences());
+    // const occurrences = useSelector(selectOccurrences());
 
     const [doencasSelected, setDoencasSelected] = useState(undefined);
     const [estadosSelected, setEstadosSelected] = useState(undefined);
@@ -21,12 +21,12 @@ function MapFilter() {
 
     const doencasOptions = ["Malária", "Dengue"];
     const estadosOptions = ["AC","PA","RO","RR","TO","MA","PB","PE","PI","RN","SE","GO","MS","MT","ES","MG","RJ","SP","RS","SC","AM","AP","AL","BA","CE","PR",];
-
+    
     const myHandleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         
-        dispatch(getOccurrences({estadosSelected, doencasSelected}));
+        // dispatch(getOccurrences({estadosSelected, doencasSelected}));
     };
 
     return (
@@ -95,7 +95,7 @@ function MapFilter() {
 
             <Typography variant="h7" component="div" className="m-4">
                 Marcadores encontrados:
-                <br />7
+                <br />LEN.OCCURRENCES
             </Typography>
 
             <Box>
