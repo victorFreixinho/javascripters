@@ -7,10 +7,10 @@ import TopBar from "../components/TopBar";
 import MapFilter from "../components/MapFilter";
 import Map from "../components/Map";
 
-function Home({ signed }) {
+function Home() {
   return (
     <div className="App">
-      <TopBar signed={signed} />
+      <TopBar />
 
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         <MapFilter />

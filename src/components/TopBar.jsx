@@ -2,14 +2,15 @@ import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../images/logotipo.png";
 import styles from "./styles/TopBar.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from "../states/modules/session";
 import { useHistory } from "react-router-dom";
+import { selectSigned } from "../states/modules/session/session.utils";
 
-function TopBar({ signed }) {
+function TopBar() {
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const signed = useSelector(selectSigned);
   const handleLogoutClick = () => {
     dispatch(logoutAction());
     history.push("/");

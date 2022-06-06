@@ -13,7 +13,7 @@ import { selectSigned } from "./states/modules/session/session.utils";
 
 function App() {
   const signed = useSelector(selectSigned);
-  console.log("Signed: ", signed);
+
   return (
     <BrowserRouter basename={"/"}>
       <ScrollContext>
@@ -31,7 +31,7 @@ const SignedRoutes = () => {
       <Route
         exact
         path={`${process.env.PUBLIC_URL}/`}
-        component={() => <Home signed={true} />}
+        component={() => <Home />}
       />
       <Route
         exact
@@ -69,7 +69,7 @@ const UnsignedRoutes = () => {
       <Route
         exact
         path={`${process.env.PUBLIC_URL}/`}
-        component={() => <Home signed={false} />}
+        component={() => <Home />}
       />
       <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login} />
       <Route
