@@ -20,7 +20,7 @@ const sessionSlice = createSlice({
   name: "session",
   initialState: {
     userId: null,
-    signed: false,
+    signed: true,
     token: null,
     loading: false,
     error: null,
