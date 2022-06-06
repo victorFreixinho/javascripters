@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import AddButton from "../../common/AddButton";
 import UserTable from "./userTable";
 import TopBar from "../../TopBar";
+import { Container } from "react-bootstrap";
 
 const UserList = () => {
   const users = [
@@ -34,31 +35,33 @@ const UserList = () => {
   return (
     <>
       <TopBar />
-      <Breadcrumb title="Gestão de Usuários" current="Gestão de Usuários" />
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-sm-12">
-            <div className="card">
-              <div className="card-header">
-                <div className="row">
-                  <div className="col">
-                    <h5>Gestão de usuários</h5>
-                  </div>
-                  <div className="col text-end">
-                    <AddButton
-                      onClick={goToAddUser}
-                      toolTipMsg={"Adicionar Um Novo Usuário"}
-                    ></AddButton>
+      <Container className="mt-5">
+        <Breadcrumb title="Gestão de Usuários" current="Gestão de Usuários" />
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-sm-12">
+              <div className="card">
+                <div className="card-header">
+                  <div className="row">
+                    <div className="col">
+                      <h5>Gestão de usuários</h5>
+                    </div>
+                    <div className="col text-end">
+                      <AddButton
+                        onClick={goToAddUser}
+                        toolTipMsg={"Adicionar Um Novo Usuário"}
+                      ></AddButton>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="card-body">
-                <UserTable usersList={users} />
+                <div className="card-body">
+                  <UserTable usersList={users} />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </>
   );
 };
