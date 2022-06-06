@@ -14,12 +14,12 @@ function DiseaseTable({ DiseaseList }) {
   console.log("DiaseaseTable: ", DiseaseList);
 
   const [modal, setModal] = useState({ show: false, user: {} });
-  const [desearseId, setDiseaseId] = useState(null);
+  const [diseaseId, setDiseaseId] = useState(null);
 
   const [showMessage, setShowMessage] = useState(false);
 
   const removedDisease = { error: "", data: {} };
-  //const removedDisease = useSelector(({ desearses }) => desearses.removedDisease);
+  //const removedDisease = useSelector(({ diseases }) => diseases.removedDisease);
 
   useEffect(() => {
     if (showMessage) {
@@ -45,20 +45,20 @@ function DiseaseTable({ DiseaseList }) {
     }
   }, [removedDisease?.data]);
 
-  //   const goToDetails = (desearse) =>
-  //     history.push(`${process.env.PUBLIC_URL}/desearses/${desearse.id}`);
+  //   const goToDetails = (disease) =>
+  //     history.push(`${process.env.PUBLIC_URL}/diseases/${disease.id}`);
 
-  const removeDisease = (desearse) => (e) => {
+  const removeDisease = (disease) => (e) => {
     e.stopPropagation();
-    setDiseaseId(desearse.id);
-    setModal({ show: true, desearse: desearse });
+    setDiseaseId(disease.id);
+    setModal({ show: true, disease: disease });
   };
 
   const removeDiseaseHandler = () => {
     setModal({ show: false });
-    console.log("Removing disearse with id: " + desearseId);
+    console.log("Removing disease with id: " + diseaseId);
     setShowMessage(true);
-    // dispatch(removeAction({ desearseId }));
+    // dispatch(removeAction({ diseaseId }));
   };
 
   return (
@@ -72,19 +72,19 @@ function DiseaseTable({ DiseaseList }) {
             </tr>
           </thead>
           <tbody style={{ cursor: "pointer" }}>
-            {DiseaseList.map((desearse, index) => (
-              <tr key={index} /*onClick={goToDetails(desearse)}*/>
+            {DiseaseList.map((disease, index) => (
+              <tr key={index} /*onClick={goToDetails(disease)}*/>
                 <td data-testid="user-name">
                   <CoronavirusIcon
                     size={17}
                     style={{ display: "inline-block", marginRight: "2px" }}
                   />
                   &nbsp;
-                  {"   " + desearse.name}
+                  {"   " + disease.name}
                 </td>
-                <td>{desearse.rate}</td>
+                <td>{disease.rate}</td>
                 <td className="text-end">
-                  <Button color="link" onClick={removeDisease(desearse)}>
+                  <Button color="link" onClick={removeDisease(disease)}>
                     <Trash2 size={18} />
                   </Button>
                 </td>

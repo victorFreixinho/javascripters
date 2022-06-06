@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import UserList from "./components/users/UserList";
 import SignUp from "./pages/signUp";
 import Login from "./pages/login";
-import DesearseList from "./components/desearses/DesearseList";
+import DiseaseList from "./components/diseases/DiseaseList";
 import OMForm from "./pages/OMForm";
 import DoencaForm from "./pages/DoencaForm";
 import UploadData from "./pages/UploadData";
@@ -40,7 +40,7 @@ const SignedRoutes = () => {
       <Route
         exact
         path={`${process.env.PUBLIC_URL}/diseases`}
-        component={DesearseList}
+        component={DiseaseList}
       />
       <Route
         exact
