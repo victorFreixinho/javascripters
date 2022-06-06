@@ -3,10 +3,9 @@ import { ScrollContext } from "react-router-scroll-4";
 import { useSelector } from "react-redux";
 import Home from "./pages/Home";
 import UserList from "./components/users/UserList";
-import SignUp from "./pages/signUp";
-import Login from "./pages/login";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
 import DiseaseList from "./components/diseases/DiseaseList";
-import OMForm from "./pages/OMForm";
 import DoencaForm from "./pages/DoencaForm";
 import UploadData from "./pages/UploadData";
 import { selectSigned } from "./states/modules/session/session.utils";
@@ -41,11 +40,6 @@ const SignedRoutes = () => {
         exact
         path={`${process.env.PUBLIC_URL}/diseases`}
         component={DiseaseList}
-      />
-      <Route
-        exact
-        path={`${process.env.PUBLIC_URL}/admin-om`}
-        component={OMForm}
       />
       <Route
         exact
