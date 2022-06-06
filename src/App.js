@@ -6,7 +6,6 @@ import UserList from "./components/users/UserList";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import DiseaseList from "./components/diseases/DiseaseList";
-import DoencaForm from "./pages/DoencaForm";
 import UploadData from "./pages/UploadData";
 import { selectSigned } from "./states/modules/session/session.utils";
 import NotFound from "./pages/NotFound";
