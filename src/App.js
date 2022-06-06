@@ -10,6 +10,7 @@ import OMForm from "./pages/OMForm";
 import DoencaForm from "./pages/DoencaForm";
 import UploadData from "./pages/UploadData";
 import { selectSigned } from "./states/modules/session/session.utils";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const signed = useSelector(selectSigned);
@@ -22,8 +23,6 @@ function App() {
     </BrowserRouter>
   );
 }
-
-const DefaultComponent = () => <div>default</div>;
 
 const SignedRoutes = () => {
   return (
@@ -58,7 +57,7 @@ const SignedRoutes = () => {
         path={`${process.env.PUBLIC_URL}/admin-doenca`}
         component={DoencaForm}
       />
-      <Route path="*" component={DefaultComponent} />
+      <Route path="*" component={NotFound} />
     </Switch>
   );
 };
@@ -77,7 +76,7 @@ const UnsignedRoutes = () => {
         path={`${process.env.PUBLIC_URL}/signup`}
         component={SignUp}
       />
-      <Route path="*" component={DefaultComponent} />
+      <Route path="*" component={NotFound} />
     </Switch>
   );
 };

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://localhost:7091";
+const url = "https://localhost:44330";
 const api = axios.create({ baseURL: url });
 
 const Api = {
@@ -21,16 +21,15 @@ const Api = {
 
   //diseases
 
-  getDiseases: () => {
-    api
-      .get("/disease/list")
-      .then((response) => {
-        console.log("ResponseGet : ", response);
-        return { ...response.data };
-      })
-      .catch((error) => error);
-  },
-
+  getDiseases: () => api.get("/disease/list"),
+  // .then((response) => {
+  //   console.log("ResponseGet : ", response);
+  //   return response;
+  // })
+  // .catch((error) => {
+  //   console.log("Error: ", error);
+  //   return error;
+  // });
   getOccurrences: ({ states, diseases }) => {
     api
       .post("/diseases/occurrences", { states, diseases })
@@ -45,6 +44,13 @@ const Api = {
   deleteDisease: (disease) => {
     api
       .post("/disease/delete", disease)
+      .then((response) => ({ ...response.data }))
+      .catch((error) => error);
+  },
+  setCsvData: (payload) => {
+    console.log(payload);
+    api
+      .post("/disease/upload", {"payload": payload}, {headers: {"Content-Type": "text/tab-separated-values"}})
       .then((response) => ({ ...response.data }))
       .catch((error) => error);
   },

@@ -12,12 +12,11 @@ import { selectDiseases } from "../../../states/modules/diseases/disease.utils";
 const DesearseList = () => {
   const dispatch = useDispatch();
 
-  const diseases = useSelector(selectDiseases);
-
   useEffect(() => {
     dispatch(getDiseases());
   }, [dispatch]);
 
+  const diseases = useSelector(selectDiseases);
   console.log("Diseases: ", diseases);
 
   // const desearses = [

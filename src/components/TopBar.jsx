@@ -50,6 +50,9 @@ function TopBar() {
               <Nav.Link href="/diseases" className="px-1">
                 <h3 className={styles.h3_options}>&nbsp; &nbsp;Doenças</h3>
               </Nav.Link>
+              <Nav.Link href="/upload-data" className="px-1">
+                <h3 className={styles.h3_options}>&nbsp; &nbsp;Upload CSV</h3>
+              </Nav.Link>
               <Nav.Link className="px-1" onClick={handleLogoutClick}>
                 <h3 className={styles.h3_options}>&nbsp; &nbsp;Logout</h3>
               </Nav.Link>

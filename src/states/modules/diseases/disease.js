@@ -2,8 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../../api";
 
 export const getDiseases = createAsyncThunk("diseases/list", async () => {
-  const diseases = await api.getDiseases();
-  return diseases;
+  const diseasesList = (await api.getDiseases()).data;
+  console.log("Diseases API:", diseasesList);
+  return diseasesList;
 });
 
 export const getOccurrences = createAsyncThunk(
@@ -20,6 +21,11 @@ export const deleteDisease = createAsyncThunk(
   async (disease) => await api.deleteDisease(disease)
 );
 
+export const setCsvData = createAsyncThunk(
+  "diseases/upload",
+  async (payload) => await api.setCsvData(payload)
+);
+
 export const createDisease = createAsyncThunk(
   "diseases/create",
   async (disease) => {
@@ -34,7 +40,7 @@ const diseasesSlice = createSlice({
   name: "diseases",
   initialState: {
     diseases: [],
-    ocurrences: [],
+    occurrences: [],
     loading: false,
     error: null,
   },
@@ -45,12 +51,13 @@ const diseasesSlice = createSlice({
       state.error = null;
     },
     [getDiseases.rejected]: (state, error) => {
+      console.log("PayloadError:", error);
       state.loading = false;
       state.error = error;
     },
-    [getDiseases.fulfilled]: (state, payload) => {
+    [getDiseases.fulfilled]: (state, { payload }) => {
       console.log("Payload:", payload);
-      state.diseases = payload?.diseases ? payload.diseases : [];
+      state.diseases = payload ? payload : [];
       state.error = null;
       state.loading = false;
     },
@@ -64,7 +71,8 @@ const diseasesSlice = createSlice({
       state.error = error;
     },
     [getOccurrences.fulfilled]: (state, { payload }) => {
-      state.occurrences = payload?.occurrences;
+      state.occurrences =
+        payload && payload.occurrences ? payload.occurrences : [];
       state.error = null;
       state.loading = false;
     },
@@ -78,6 +86,20 @@ const diseasesSlice = createSlice({
       state.error = error;
     },
     [deleteDisease.fulfilled]: (state, response) => {
+      console.log("Response: ", response);
+      state.error = null;
+      state.loading = false;
+    },
+
+    [setCsvData.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [setCsvData.rejected]: (state, error) => {
+      state.loading = false;
+      state.error = error;
+    },
+    [setCsvData.fulfilled]: (state, response) => {
       console.log("Response: ", response);
       state.error = null;
       state.loading = false;
