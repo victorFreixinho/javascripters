@@ -53,9 +53,10 @@ function UploadData(props) {
         reader.onload = () => {
           // Do whatever you want with the file contents
           const binaryStr = reader.result
+          console.log("binary str: ",binaryStr)
           handleSubmit(binaryStr)
         }
-        reader.readAsArrayBuffer(file)
+        reader.readAsBinaryString(file)
       })
       
     }, [])

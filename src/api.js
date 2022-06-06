@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://localhost:7091";
+const url = "https://localhost:44330";
 const api = axios.create({ baseURL: url });
 
 const Api = {
@@ -58,8 +58,9 @@ const Api = {
       .catch((error) => error);
   },
   setCsvData: (payload) => {
+    console.log(payload);
     api
-      .post("/disease/upload", payload)
+      .post("/disease/upload", {"payload": payload}, {headers: {"Content-Type": "text/tab-separated-values"}})
       .then((response) => ({ ...response.data }))
       .catch((error) => error);
   },

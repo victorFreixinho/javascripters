@@ -22,7 +22,7 @@ export const deleteDisease = createAsyncThunk(
 
 export const setCsvData = createAsyncThunk(
   "diseases/upload",
-  async (payload) => await api.deleteDisease(payload)
+  async (payload) => await api.setCsvData(payload)
 );
 
 export const createDisease = createAsyncThunk(
