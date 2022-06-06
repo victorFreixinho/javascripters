@@ -30,16 +30,15 @@ const Api = {
 
   //diseases
 
-  getDiseases: () => {
-    api
-      .get("/disease/list")
-      .then((response) => {
-        console.log("ResponseGet : ", response);
-        return { ...response.data };
-      })
-      .catch((error) => error);
-  },
-
+  getDiseases: () => api.get("/disease/list"),
+  // .then((response) => {
+  //   console.log("ResponseGet : ", response);
+  //   return response;
+  // })
+  // .catch((error) => {
+  //   console.log("Error: ", error);
+  //   return error;
+  // });
   getOccurrences: ({ states, diseases }) => {
     api
       .post("/diseases/occurrences", { states, diseases })
