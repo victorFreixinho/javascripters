@@ -13,19 +13,17 @@ import { selectOccurrences } from "../states/modules/diseases/disease.utils";
 function MapFilter() {
     const dispatch = useDispatch();
 
-    // const occurrences = useSelector(selectOccurrences());
+    const occurrences = useSelector(selectOccurrences);
 
     const [selectedDiseases, setSelectedDiseases] = useState(undefined);
     const [selectedStates, setSelectedStates] = useState(undefined);
-
 
     const diseasesOptions = ["Malária", "Dengue"];
     const statesOptions = ["AC","PA","RO","RR","TO","MA","PB","PE","PI","RN","SE","GO","MS","MT","ES","MG","RJ","SP","RS","SC","AM","AP","AL","BA","CE","PR",];
     
     const myHandleSubmit = (event) => {
         event.preventDefault();
-        // const data = new FormData(event.currentTarget);
-        // dispatch(getOccurrences({estadosSelected, doencasSelected}));
+        dispatch(getOccurrences({selectedStates, selectedDiseases}));
     };
 
     return (
