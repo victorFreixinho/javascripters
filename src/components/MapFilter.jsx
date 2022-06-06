@@ -53,7 +53,7 @@ function MapFilter() {
                   filterSelectedOptions
                   value={selectedDiseases || []}
                   onChange={(event, selected_doencas) => {
-                    setDoencasSelected(selected_doencas);
+                    setSelectedDiseases(selected_doencas);
                   }}
                   renderInput={(params) => (
                     <TextField {...params} label="Nome das Doenças" placeholder="Doença" margin="none"/>
@@ -68,7 +68,7 @@ function MapFilter() {
                     filterSelectedOptions
                     value={selectedStates || []}
                     onChange={(event, selected_estados) => {
-                      setEstadosSelected(selected_estados);
+                      setSelectedStates(selected_estados);
                     }}
                     renderInput={(params) => (
                       <TextField {...params} label="Estados" placeholder="Estado" margin="none"/>
