@@ -17,48 +17,69 @@ function App() {
   return (
     <BrowserRouter basename={"/"}>
       <ScrollContext>
-        <Switch>
-          <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home} />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/users`}
-            component={UserList}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/signup`}
-            component={SignUp}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/login`}
-            component={Login}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/diseases`}
-            component={DesearseList}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/admin-om`}
-            component={OMForm}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/upload-data`}
-            component={UploadData}
-          />
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/admin-doenca`}
-            component={DoencaForm}
-          />
-          <Route path="*" element={<div>default</div>} />
-        </Switch>
+        {signed ? <SignedRoutes /> : <UnsignedRoutes />}
       </ScrollContext>
     </BrowserRouter>
   );
 }
+
+const DefaultComponent = () => <div>default</div>;
+
+const SignedRoutes = () => {
+  return (
+    <Switch>
+      <Route
+        exact
+        path={`${process.env.PUBLIC_URL}/`}
+        component={() => <Home signed={true} />}
+      />
+      <Route
+        exact
+        path={`${process.env.PUBLIC_URL}/users`}
+        component={UserList}
+      />
+      <Route
+        exact
+        path={`${process.env.PUBLIC_URL}/diseases`}
+        component={DesearseList}
+      />
+      <Route
+        exact
+        path={`${process.env.PUBLIC_URL}/admin-om`}
+        component={OMForm}
+      />
+      <Route
+        exact
+        path={`${process.env.PUBLIC_URL}/upload-data`}
+        component={UploadData}
+      />
+      <Route
+        exact
+        path={`${process.env.PUBLIC_URL}/admin-doenca`}
+        component={DoencaForm}
+      />
+      <Route path="*" component={DefaultComponent} />
+    </Switch>
+  );
+};
+
+const UnsignedRoutes = () => {
+  return (
+    <Switch>
+      <Route
+        exact
+        path={`${process.env.PUBLIC_URL}/`}
+        component={() => <Home signed={false} />}
+      />
+      <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login} />
+      <Route
+        exact
+        path={`${process.env.PUBLIC_URL}/signup`}
+        component={SignUp}
+      />
+      <Route path="*" component={DefaultComponent} />
+    </Switch>
+  );
+};
 
 export default App;
