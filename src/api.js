@@ -57,6 +57,12 @@ const Api = {
       .then((response) => ({ ...response.data }))
       .catch((error) => error);
   },
+  setCsvData: (payload) => {
+    api
+      .post("/disease/upload", payload)
+      .then((response) => ({ ...response.data }))
+      .catch((error) => error);
+  },
 
   createDisease: (disease) => {
     api
