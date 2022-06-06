@@ -13,7 +13,7 @@ import { selectOccurrences } from "../states/modules/diseases/disease.utils";
 function MapFilter() {
   const dispatch = useDispatch();
 
-  const occurrences = useSelector(selectOccurrences());
+  const occurrences = useSelector(selectOccurrences);
 
   const top100Films = [{ title: "Malária" }, { title: "Dengue" }];
 

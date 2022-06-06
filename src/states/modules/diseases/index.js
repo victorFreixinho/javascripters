@@ -1,2 +1,2 @@
-export * from "./session";
-export { default } from "./session";
+export * from "./disease";
+export { default } from "./disease";

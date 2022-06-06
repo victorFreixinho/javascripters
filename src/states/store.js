@@ -4,10 +4,12 @@ import session from "./modules/session";
 import thunk from "redux-thunk";
 import users from "./modules/users";
 import persistReducers from "./persistReducer";
+import diseases from "./modules/diseases";
 
 const reducers = combineReducers({
   session,
   users,
+  diseases,
 });
 
 const store = configureStore({
