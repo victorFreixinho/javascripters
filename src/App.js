@@ -8,6 +8,7 @@ import Login from "./pages/login";
 import DesearseList from "./components/desearses/DesearseList";
 import OMForm from "./pages/OMForm";
 import DoencaForm from "./pages/DoencaForm";
+import UploadData from "./pages/UploadData";
 import { selectSigned } from "./states/modules/session/session.utils";
 
 function App() {
@@ -42,6 +43,11 @@ function App() {
             exact
             path={`${process.env.PUBLIC_URL}/admin-om`}
             component={OMForm}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/upload-data`}
+            component={UploadData}
           />
           <Route
             exact
