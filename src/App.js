@@ -46,11 +46,6 @@ const SignedRoutes = () => {
         path={`${process.env.PUBLIC_URL}/upload-data`}
         component={UploadData}
       />
-      <Route
-        exact
-        path={`${process.env.PUBLIC_URL}/admin-doenca`}
-        component={DoencaForm}
-      />
       <Route path="*" component={NotFound} />
     </Switch>
   );
