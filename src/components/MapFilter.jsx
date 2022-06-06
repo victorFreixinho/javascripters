@@ -28,7 +28,6 @@ function MapFilter() {
   const diseases = useSelector(selectDiseases);
 
   const diseasesOptions = diseases.map((disease) => disease.name);
-  console.log("diseasesOptions: ", diseasesOptions);
   const statesOptions = [
     "AC",
     "PA",

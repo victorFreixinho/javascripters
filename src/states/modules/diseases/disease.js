@@ -3,22 +3,30 @@ import api from "../../../api";
 
 export const getDiseases = createAsyncThunk("diseases/list", async () => {
   const diseasesList = (await api.getDiseases()).data;
-  console.log("Diseases API:", diseasesList);
   return diseasesList;
 });
 
 export const getOccurrences = createAsyncThunk(
   "diseases/occurrences",
   async (payload) => {
-    const { states, diseases } = payload;
-    const occurrences = await api.getOccurrences({ states, diseases });
+    const { selectedStates, selectedDiseases } = payload;
+    const occurrences = (
+      await api.getOccurrences({
+        selectedStates,
+        selectedDiseases,
+      })
+    ).data;
+    console.log("response occurrences: ", occurrences);
     return occurrences;
   }
 );
 
 export const deleteDisease = createAsyncThunk(
   "diseases/delete",
-  async (disease) => await api.deleteDisease(disease)
+  async (disease) => {
+    const removedDisease = (await api.deleteDisease(disease)).config.data;
+    return removedDisease;
+  }
 );
 
 export const setCsvData = createAsyncThunk(
@@ -41,6 +49,7 @@ const diseasesSlice = createSlice({
   initialState: {
     diseases: [],
     occurrences: [],
+    removedDisease: null,
     loading: false,
     error: null,
   },
@@ -51,12 +60,10 @@ const diseasesSlice = createSlice({
       state.error = null;
     },
     [getDiseases.rejected]: (state, error) => {
-      console.log("PayloadError:", error);
       state.loading = false;
       state.error = error;
     },
     [getDiseases.fulfilled]: (state, { payload }) => {
-      console.log("Payload:", payload);
       state.diseases = payload ? payload : [];
       state.error = null;
       state.loading = false;
@@ -71,8 +78,7 @@ const diseasesSlice = createSlice({
       state.error = error;
     },
     [getOccurrences.fulfilled]: (state, { payload }) => {
-      state.occurrences =
-        payload && payload.occurrences ? payload.occurrences : [];
+      state.occurrences = payload && payload ? payload : [];
       state.error = null;
       state.loading = false;
     },
@@ -85,8 +91,9 @@ const diseasesSlice = createSlice({
       state.loading = false;
       state.error = error;
     },
-    [deleteDisease.fulfilled]: (state, response) => {
-      console.log("Response: ", response);
+    [deleteDisease.fulfilled]: (state, { payload }) => {
+      console.log("Response: ", payload);
+      state.removedDisease = payload;
       state.error = null;
       state.loading = false;
     },

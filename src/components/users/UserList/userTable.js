@@ -7,6 +7,8 @@ import { Trash2, User } from "react-feather";
 import { Button, Badge } from "reactstrap";
 
 import Modal from "../../common/modal";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUser } from "../../../states/modules/users";
 
 function UserTable({ usersList }) {
   const history = useHistory();
@@ -15,9 +17,9 @@ function UserTable({ usersList }) {
   const [userId, setUserId] = useState(null);
 
   const [showMessage, setShowMessage] = useState(false);
+  const dispatch = useDispatch();
 
-  const removedUser = { error: "", data: {} };
-  //const removedUser = useSelector(({ users }) => users.removedUser);
+  const removedUser = useSelector(({ users }) => users.removedUser);
 
   useEffect(() => {
     if (showMessage) {
@@ -36,12 +38,14 @@ function UserTable({ usersList }) {
   }, [removedUser?.error]);
 
   useEffect(() => {
+    console.log("UseEffect: ", showMessage);
+    toast.success("Qualquer coisa");
     if (showMessage) {
-      if (removedUser && removedUser.data) {
+      if (removedUser) {
         toast.success(`Usuário removido com sucesso!`);
       }
     }
-  }, [removedUser?.data]);
+  }, [removedUser]);
 
   const goToEditUser = (userId) => (e) => {
     history.push(`${process.env.PUBLIC_URL}/users/${userId}`);
@@ -49,15 +53,16 @@ function UserTable({ usersList }) {
 
   const removeUser = (user) => (e) => {
     e.stopPropagation();
-    setUserId(user.id);
-    setModal({ show: true, user: user });
+    //setUserId(user.id);
+    setModal({ show: true, user });
   };
 
   const removeUserHandler = () => {
-    setModal({ show: false });
+    const user = modal.user;
+    setModal({ show: false, user: {} });
     console.log("Removing user with id: " + userId);
     setShowMessage(true);
-    // dispatch(removeAction({ userId }));
+    dispatch(deleteUser(user));
   };
 
   return (
@@ -72,8 +77,8 @@ function UserTable({ usersList }) {
             </tr>
           </thead>
           <tbody style={{ cursor: "pointer" }}>
-            {usersList.map((user) => (
-              <tr key={user.id} onClick={goToEditUser(user.id)}>
+            {usersList.map((user, index) => (
+              <tr key={index} onClick={goToEditUser(user.id)}>
                 <td data-testid="user-name">
                   <User
                     size={17}

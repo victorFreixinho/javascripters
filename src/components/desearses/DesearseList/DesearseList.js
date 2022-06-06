@@ -17,25 +17,6 @@ const DesearseList = () => {
   }, [dispatch]);
 
   const diseases = useSelector(selectDiseases);
-  console.log("Diseases: ", diseases);
-
-  // const desearses = [
-  //   {
-  //     id: 1,
-  //     name: "Dengue",
-  //     rate: "Alta",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Febre Amarela",
-  //     rate: "Moderada",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Meningite",
-  //     rate: "Baixa",
-  //   },
-  // ];
 
   //  const history = useHistory();
   //   const goToAddDesearse = () =>

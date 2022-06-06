@@ -28,48 +28,42 @@ const Api = {
         return error;
       }),
 
+  getUsers: () => api.get("/user/list"),
+
+  deleteUser: (user) => {
+    console.log("user removed: ", user);
+    return api.post("/user/delete", user);
+  },
+
   //diseases
 
   getDiseases: () => api.get("/disease/list"),
-  // .then((response) => {
-  //   console.log("ResponseGet : ", response);
-  //   return response;
-  // })
-  // .catch((error) => {
-  //   console.log("Error: ", error);
-  //   return error;
-  // });
-  getOccurrences: ({ states, diseases }) => {
-    api
-      .post("/diseases/occurrences", { states, diseases })
-      .then((response) => {
-        return { ...response.data };
-      })
-      .catch((error) => {
-        return error;
-      });
-  },
+
+  getOccurrences: ({ selectedStates, selectedDiseases }) =>
+    api.post(
+      "/disease/mapfilter",
+      { selectedStates: selectedStates, selectedDiseases: selectedDiseases },
+      { headers: { "Content-Type": "application/json" } }
+    ),
 
   deleteDisease: (disease) => {
-    api
-      .post("/disease/delete", disease)
-      .then((response) => ({ ...response.data }))
-      .catch((error) => error);
+    console.log("Disease removed: ", disease);
+    return api.post("/disease/delete", disease);
   },
+
   setCsvData: (payload) => {
     console.log(payload);
     api
-      .post("/disease/upload", {"payload": payload}, {headers: {"Content-Type": "text/tab-separated-values"}})
+      .post(
+        "/disease/upload",
+        { payload: payload },
+        { headers: { "Content-Type": "text/tab-separated-values" } }
+      )
       .then((response) => ({ ...response.data }))
       .catch((error) => error);
   },
 
-  createDisease: (disease) => {
-    api
-      .post("/disease/insert", disease)
-      .then((response) => ({ ...response.data }))
-      .catch((error) => error);
-  },
+  createDisease: (disease) => api.post("/disease/insert", disease),
 
   // setData : (data) =>{
   //   api.post("rota",data)

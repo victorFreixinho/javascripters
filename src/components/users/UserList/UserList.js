@@ -5,29 +5,18 @@ import { useHistory } from "react-router-dom";
 import AddButton from "../../common/AddButton";
 import UserTable from "./userTable";
 import TopBar from "../../TopBar";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "../../../states/modules/users";
+import { selectUserList } from "../../../states/modules/users/user.utils";
 
 const UserList = () => {
-  const users = [
-    {
-      id: 1,
-      name: "Pedro",
-      email: "pedro@gmail.com",
-      roles: [{ id: 1, label: "administrador" }],
-    },
-    {
-      id: 2,
-      name: "Victor",
-      email: "victor@gmail.com",
-      roles: [{ id: 1, label: "administrador" }],
-    },
-    {
-      id: 3,
-      name: "Antônio",
-      email: "antonio@gmail.com",
-      roles: [{ id: 1, label: "administrador" }],
-    },
-  ];
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
+  const users = useSelector(selectUserList);
   const history = useHistory();
   const goToAddUser = () => history.push(`${process.env.PUBLIC_URL}/users/add`);
 
