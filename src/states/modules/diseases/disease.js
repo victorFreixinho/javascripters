@@ -15,6 +15,21 @@ export const getOccurrences = createAsyncThunk(
   }
 );
 
+export const deleteDisease = createAsyncThunk(
+  "diseases/delete",
+  async (disease) => await api.deleteDisease(disease)
+);
+
+export const createDisease = createAsyncThunk(
+  "diseases/create",
+  async (disease) => {
+    await api
+      .createDisease(disease)
+      .then((response) => ({ response, disease }))
+      .catch((error) => error);
+  }
+);
+
 const diseasesSlice = createSlice({
   name: "diseases",
   initialState: {
@@ -25,31 +40,62 @@ const diseasesSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [getDiseases.pending]: (state, { payload }) => {
+    [getDiseases.pending]: (state) => {
       state.loading = true;
       state.error = null;
     },
-    [getDiseases.rejected]: (state, { payload }) => {
+    [getDiseases.rejected]: (state, error) => {
       state.loading = false;
-      state.error = payload.error;
+      state.error = error;
     },
-    [getDiseases.fulfilled]: (state, { payload }) => {
-      state.diseases = payload.diseases;
+    [getDiseases.fulfilled]: (state, payload) => {
+      console.log("Payload:", payload);
+      state.diseases = payload?.diseases ? payload.diseases : [];
       state.error = null;
       state.loading = false;
     },
-    [getOccurrences.pending]: (state, { payload }) => {
+
+    [getOccurrences.pending]: (state) => {
       state.loading = true;
       state.error = null;
     },
-    [getOccurrences.rejected]: (state, { payload }) => {
+    [getOccurrences.rejected]: (state, error) => {
       state.loading = false;
-      state.error = payload.error;
+      state.error = error;
     },
     [getOccurrences.fulfilled]: (state, { payload }) => {
-      state.occurrences = payload.occurrences;
+      state.occurrences = payload?.occurrences;
       state.error = null;
       state.loading = false;
+    },
+
+    [deleteDisease.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [deleteDisease.rejected]: (state, error) => {
+      state.loading = false;
+      state.error = error;
+    },
+    [deleteDisease.fulfilled]: (state, response) => {
+      console.log("Response: ", response);
+      state.error = null;
+      state.loading = false;
+    },
+
+    [createDisease.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [createDisease.rejected]: (state, error) => {
+      state.loading = false;
+      state.error = error;
+    },
+    [createDisease.fulfilled]: (state, { response, disease }) => {
+      console.log("Response: ", response);
+      state.error = null;
+      state.loading = false;
+      state.diseases.push(disease);
     },
   },
 });

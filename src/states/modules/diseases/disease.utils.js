@@ -1,2 +1,4 @@
 // Selectors
-export const selectOccurrences = ({ diseases }) => diseases.selectOccurrences;
+export const selectOccurrences = ({ diseases }) => diseases.occurrences;
+
+export const selectDiseases = ({ diseases }) => diseases.diseases;

@@ -5,25 +5,38 @@ import Breadcrumb from "../../common/breadcrumb";
 import AddButton from "../../common/AddButton";
 import DesearseTable from "./DesearseTable";
 import TopBar from "../../TopBar";
+import { useDispatch, useSelector } from "react-redux";
+import { getDiseases } from "../../../states/modules/diseases";
+import { selectDiseases } from "../../../states/modules/diseases/disease.utils";
 
 const DesearseList = () => {
-  const desearses = [
-    {
-      id: 1,
-      name: "Dengue",
-      rate: "Alta",
-    },
-    {
-      id: 2,
-      name: "Febre Amarela",
-      rate: "Moderada",
-    },
-    {
-      id: 3,
-      name: "Meningite",
-      rate: "Baixa",
-    },
-  ];
+  const dispatch = useDispatch();
+
+  const diseases = useSelector(selectDiseases);
+
+  useEffect(() => {
+    dispatch(getDiseases());
+  }, [dispatch]);
+
+  console.log("Diseases: ", diseases);
+
+  // const desearses = [
+  //   {
+  //     id: 1,
+  //     name: "Dengue",
+  //     rate: "Alta",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Febre Amarela",
+  //     rate: "Moderada",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Meningite",
+  //     rate: "Baixa",
+  //   },
+  // ];
 
   //  const history = useHistory();
   //   const goToAddDesearse = () =>
@@ -51,7 +64,7 @@ const DesearseList = () => {
                 </div>
               </div>
               <div className="card-body">
-                <DesearseTable DesearseList={desearses} />
+                <DesearseTable DiseaseList={diseases} />
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 //import { useHistory } from "react-router-dom";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
-//import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
 import { Trash2 } from "react-feather";
@@ -9,53 +9,54 @@ import { Button, Badge } from "reactstrap";
 
 import Modal from "../../common/modal";
 
-function DesearseTable({ DesearseList }) {
+function DiseaseTable({ DiseaseList }) {
   //const history = useHistory();
+  console.log("DiaseaseTable: ", DiseaseList);
 
   const [modal, setModal] = useState({ show: false, user: {} });
-  const [desearseId, setDesearseId] = useState(null);
+  const [desearseId, setDiseaseId] = useState(null);
 
   const [showMessage, setShowMessage] = useState(false);
 
-  const removedDesearse = { error: "", data: {} };
-  //const removedDesearse = useSelector(({ desearses }) => desearses.removedDesearse);
+  const removedDisease = { error: "", data: {} };
+  //const removedDisease = useSelector(({ desearses }) => desearses.removedDisease);
 
   useEffect(() => {
     if (showMessage) {
-      if (removedDesearse && removedDesearse.error) {
-        const validationErrors = removedDesearse.error["validation-errors"];
+      if (removedDisease && removedDisease.error) {
+        const validationErrors = removedDisease.error["validation-errors"];
 
         if (validationErrors) {
           validationErrors.map((error) => {
             toast.error(error.msg);
           });
         } else {
-          toast.error(removedDesearse.error.message);
+          toast.error(removedDisease.error.message);
         }
       }
     }
-  }, [removedDesearse?.error]);
+  }, [removedDisease?.error]);
 
   useEffect(() => {
     if (showMessage) {
-      if (removedDesearse && removedDesearse.data) {
+      if (removedDisease && removedDisease.data) {
         toast.success(`Doença removida com sucesso!`);
       }
     }
-  }, [removedDesearse?.data]);
+  }, [removedDisease?.data]);
 
   //   const goToDetails = (desearse) =>
   //     history.push(`${process.env.PUBLIC_URL}/desearses/${desearse.id}`);
 
-  const removeDesearse = (desearse) => (e) => {
+  const removeDisease = (desearse) => (e) => {
     e.stopPropagation();
-    setDesearseId(desearse.id);
+    setDiseaseId(desearse.id);
     setModal({ show: true, desearse: desearse });
   };
 
-  const removeDesearseHandler = () => {
+  const removeDiseaseHandler = () => {
     setModal({ show: false });
-    console.log("Removing desearse with id: " + desearseId);
+    console.log("Removing disearse with id: " + desearseId);
     setShowMessage(true);
     // dispatch(removeAction({ desearseId }));
   };
@@ -71,7 +72,7 @@ function DesearseTable({ DesearseList }) {
             </tr>
           </thead>
           <tbody style={{ cursor: "pointer" }}>
-            {DesearseList.map((desearse) => (
+            {DiseaseList.map((desearse) => (
               <tr key={desearse.id} /*onClick={goToDetails(desearse)}*/>
                 <td data-testid="user-name">
                   <CoronavirusIcon
@@ -83,7 +84,7 @@ function DesearseTable({ DesearseList }) {
                 </td>
                 <td>{desearse.rate}</td>
                 <td className="text-end">
-                  <Button color="link" onClick={removeDesearse(desearse)}>
+                  <Button color="link" onClick={removeDisease(desearse)}>
                     <Trash2 size={18} />
                   </Button>
                 </td>
@@ -95,7 +96,7 @@ function DesearseTable({ DesearseList }) {
       <Modal
         isOpen={modal.show}
         onClose={() => setModal({ show: false })}
-        onAccept={removeDesearseHandler}
+        onAccept={removeDiseaseHandler}
         title="Remover Doença"
       >
         Tem certeza que deseja excluir a doença{" "}
@@ -105,4 +106,4 @@ function DesearseTable({ DesearseList }) {
   );
 }
 
-export default DesearseTable;
+export default DiseaseTable;
