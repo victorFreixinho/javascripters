@@ -1,6 +1,8 @@
 import React from 'react';
 import {useDropzone} from 'react-dropzone';
 import styled from 'styled-components';
+import TopBar from '../components/TopBar';
+import Typography from "@mui/material/Typography";
 
 const getColor = (props) => {
   if (props.isDragAccept) {
@@ -41,12 +43,19 @@ function UploadData(props) {
   } = useDropzone({accept: {'image/*': []}});
   
   return (
+    <div className="App">
+    <TopBar />
+
     <div className="container">
+      <Typography variant="h5" component="div" className="mt-5 mb-3" align="justify">
+        Upload de CSV
+      </Typography>
       <Container {...getRootProps({isFocused, isDragAccept, isDragReject})}>
         <input {...getInputProps()} />
         <p>Arraste os arquivos aqui! Ou clique para selecionar os arquivos.</p>
       </Container>
     </div>
+  </div>
   );
 }
 
