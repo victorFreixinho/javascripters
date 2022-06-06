@@ -2,8 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../../api";
 
 export const getDiseases = createAsyncThunk("diseases/list", async () => {
-  const diseases = await api.getDiseases();
-  return diseases;
+  const diseasesList = (await api.getDiseases()).data;
+  console.log("Diseases API:", diseasesList);
+  return diseasesList;
 });
 
 export const getOccurrences = createAsyncThunk(
@@ -50,12 +51,13 @@ const diseasesSlice = createSlice({
       state.error = null;
     },
     [getDiseases.rejected]: (state, error) => {
+      console.log("PayloadError:", error);
       state.loading = false;
       state.error = error;
     },
-    [getDiseases.fulfilled]: (state, payload) => {
+    [getDiseases.fulfilled]: (state, { payload }) => {
       console.log("Payload:", payload);
-      state.diseases = payload?.diseases ? payload.diseases : [];
+      state.diseases = payload ? payload : [];
       state.error = null;
       state.loading = false;
     },

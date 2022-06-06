@@ -13,19 +13,17 @@ import { selectOccurrences } from "../states/modules/diseases/disease.utils";
 function MapFilter() {
     const dispatch = useDispatch();
 
-    // const occurrences = useSelector(selectOccurrences());
+    const occurrences = useSelector(selectOccurrences);
 
     const [selectedDiseases, setSelectedDiseases] = useState(undefined);
     const [selectedStates, setSelectedStates] = useState(undefined);
-
 
     const diseasesOptions = ["Malária", "Dengue"];
     const statesOptions = ["AC","PA","RO","RR","TO","MA","PB","PE","PI","RN","SE","GO","MS","MT","ES","MG","RJ","SP","RS","SC","AM","AP","AL","BA","CE","PR",];
     
     const myHandleSubmit = (event) => {
         event.preventDefault();
-        // const data = new FormData(event.currentTarget);
-        // dispatch(getOccurrences({estadosSelected, doencasSelected}));
+        dispatch(getOccurrences({selectedStates, selectedDiseases}));
     };
 
     return (
@@ -53,7 +51,7 @@ function MapFilter() {
                   filterSelectedOptions
                   value={selectedDiseases || []}
                   onChange={(event, selected_doencas) => {
-                    setDoencasSelected(selected_doencas);
+                    setSelectedDiseases(selected_doencas);
                   }}
                   renderInput={(params) => (
                     <TextField {...params} label="Nome das Doenças" placeholder="Doença" margin="none"/>
@@ -68,7 +66,7 @@ function MapFilter() {
                     filterSelectedOptions
                     value={selectedStates || []}
                     onChange={(event, selected_estados) => {
-                      setEstadosSelected(selected_estados);
+                      setSelectedStates(selected_estados);
                     }}
                     renderInput={(params) => (
                       <TextField {...params} label="Estados" placeholder="Estado" margin="none"/>

@@ -72,8 +72,8 @@ function DiseaseTable({ DiseaseList }) {
             </tr>
           </thead>
           <tbody style={{ cursor: "pointer" }}>
-            {DiseaseList.map((desearse) => (
-              <tr key={desearse.id} /*onClick={goToDetails(desearse)}*/>
+            {DiseaseList.map((desearse, index) => (
+              <tr key={index} /*onClick={goToDetails(desearse)}*/>
                 <td data-testid="user-name">
                   <CoronavirusIcon
                     size={17}
