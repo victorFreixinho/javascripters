@@ -12,8 +12,8 @@ function Map() {
   return (
     <Card sx={{width: "55vw", height: "70vh", minWidth: 300, margin: 5 }} className='bg-light'>
 
-    <div style={{margin: '10px'}}>
-      <MapContainer center={[-10.903, -54.516]} zoom={3} scrollWheelZoom={true}>
+    <div>
+      <MapContainer center={[-25, -28]} zoom={4} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -27,25 +27,7 @@ function Map() {
       </MapContainer>
 
     </div>
-      {/* <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="div">
-          benevolent
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
+
     </Card>
   );
 }
