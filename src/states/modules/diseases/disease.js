@@ -40,7 +40,7 @@ const diseasesSlice = createSlice({
   name: "diseases",
   initialState: {
     diseases: [],
-    ocurrences: [],
+    occurrences: [],
     loading: false,
     error: null,
   },
@@ -71,7 +71,8 @@ const diseasesSlice = createSlice({
       state.error = error;
     },
     [getOccurrences.fulfilled]: (state, { payload }) => {
-      state.occurrences = payload?.occurrences;
+      state.occurrences =
+        payload && payload.occurrences ? payload.occurrences : [];
       state.error = null;
       state.loading = false;
     },
