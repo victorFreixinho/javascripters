@@ -1,6 +1,6 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ScrollContext } from "react-router-scroll-4";
-
+import { useSelector } from "react-redux";
 import Home from "./pages/Home";
 import UserList from "./components/users/UserList";
 import SignUp from "./pages/signUp";
@@ -8,8 +8,11 @@ import Login from "./pages/login";
 import DesearseList from "./components/desearses/DesearseList";
 import OMForm from "./pages/OMForm";
 import DoencaForm from "./pages/DoencaForm";
+import { selectSigned } from "./states/modules/session/session.utils";
 
 function App() {
+  const signed = useSelector(selectSigned);
+  console.log("Signed: ", signed);
   return (
     <BrowserRouter basename={"/"}>
       <ScrollContext>
