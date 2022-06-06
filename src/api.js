@@ -33,7 +33,10 @@ const Api = {
   getDiseases: () => {
     api
       .get("/disease/list")
-      .then((response) => ({ ...response.data }))
+      .then((response) => {
+        console.log("ResponseGet : ", response);
+        return { ...response.data };
+      })
       .catch((error) => error);
   },
 
@@ -47,6 +50,24 @@ const Api = {
         return error;
       });
   },
+
+  deleteDisease: (disease) => {
+    api
+      .post("/disease/delete", disease)
+      .then((response) => ({ ...response.data }))
+      .catch((error) => error);
+  },
+
+  createDisease: (disease) => {
+    api
+      .post("/disease/insert", disease)
+      .then((response) => ({ ...response.data }))
+      .catch((error) => error);
+  },
+
+  // setData : (data) =>{
+  //   api.post("rota",data)
+  // }
 };
 
 export default Api;
