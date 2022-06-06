@@ -11,100 +11,98 @@ import { getOccurrences } from "../states/modules/diseases/disease";
 import { selectOccurrences } from "../states/modules/diseases/disease.utils";
 
 function MapFilter() {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const occurrences = useSelector(selectOccurrences);
+    const occurrences = useSelector(selectOccurrences());
 
-  const top100Films = [{ title: "Malária" }, { title: "Dengue" }];
+    const [doencasSelected, setDoencasSelected] = useState(undefined);
+    const [estadosSelected, setEstadosSelected] = useState(undefined);
 
-  const regioes = [
-    "Todo o Brasil",
-    "Norte",
-    "Nordeste",
-    "Centro-Oeste",
-    "Sudeste",
-    "Sul",
-  ];
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const states = data.get("states");
-    const diseases = data.get("diseases");
-    console.log("PRINT: ", { states, diseases });
-    dispatch(getOccurrences({ states, diseases }));
-  };
+    const doencasOptions = ["Malária", "Dengue"];
+    const estadosOptions = ["AC","PA","RO","RR","TO","MA","PB","PE","PI","RN","SE","GO","MS","MT","ES","MG","RJ","SP","RS","SC","AM","AP","AL","BA","CE","PR",];
 
-  return (
-    <Card
-      sx={{ width: "30vw", height: "70vh", minWidth: 300, margin: 5 }}
-      className="bg-light"
-    >
-      <Typography variant="h5" component="div" className="m-4">
-        Filtrar no Mapa
-      </Typography>
-      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-        <Box className="m-4 bg-white">
-          <Autocomplete
-            multiple
-            id="tags-outlined"
-            options={top100Films}
-            getOptionLabel={(option) => option.title}
-            filterSelectedOptions
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                name="disease"
-                label="Nome das Doenças"
-                placeholder="Doença"
-              />
-            )}
-          />
-        </Box>
+    const myHandleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        
+        dispatch(getOccurrences({estadosSelected, doencasSelected}));
+    };
 
-        <Box className="m-4 bg-white">
-          <Autocomplete
-            multiple
-            id="tags-outlined"
-            options={regioes}
-            filterSelectedOptions
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                name="states"
-                label="Regiões"
-                placeholder="Região"
-              />
-            )}
-          />
-        </Box>
+    return (
+        <Card
+            sx={{ width: "30vw", height: "70vh", minWidth: 300, margin: 5 }}
+            className="bg-light"
+        >
+            <Typography variant="h5" component="div" className="m-4">
+                Filtrar no Mapa
+            </Typography>
 
-        <Box>
-          <Button type="Enviar" variant="contained">
-            Atualizar no mapa
-          </Button>
-        </Box>
-      </Box>
 
-      <div
-        style={{
-          borderTop: "1px solid grey",
-          width: "90%",
-          margin: "auto",
-          marginTop: "20px",
-        }}
-      ></div>
 
-      <Typography variant="h7" component="div" className="m-4">
-        Marcadores encontrados:
-        <br />7
-      </Typography>
+            <Box
+                component="form"
+                noValidate
+                onSubmit={myHandleSubmit}
+                sx={{ mt: 3 }}
+            >
 
-      <Box>
-        <Button variant="contained">Gerar relatório em PDF</Button>
-      </Box>
-    </Card>
-  );
+                <Box className="m-4 bg-white">
+                  <Autocomplete
+                  multiple
+                  options={doencasOptions}
+                  filterSelectedOptions
+                  value={doencasSelected || []}
+                  onChange={(event, selected_doencas) => {
+                    setDoencasSelected(selected_doencas);
+                  }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Nome das Doenças" placeholder="Doença" margin="none"/>
+                  )}
+                  />
+                </Box>
+
+                <Box className="m-4 bg-white">
+                  <Autocomplete
+                    multiple
+                    options={estadosOptions}
+                    filterSelectedOptions
+                    value={estadosSelected || []}
+                    onChange={(event, selected_estados) => {
+                      setEstadosSelected(selected_estados);
+                    }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Estados" placeholder="Estado" margin="none"/>
+                    )}
+                  />
+                </Box>
+
+                <Box>
+                    <Button type="Enviar" variant="contained">
+                        Atualizar no mapa
+                    </Button>
+                </Box>
+            </Box>
+
+            <div
+                style={{
+                    borderTop: "1px solid grey",
+                    width: "90%",
+                    margin: "auto",
+                    marginTop: "20px",
+                }}
+            ></div>
+
+            <Typography variant="h7" component="div" className="m-4">
+                Marcadores encontrados:
+                <br />7
+            </Typography>
+
+            <Box>
+                <Button variant="contained">Gerar relatório em PDF</Button>
+            </Box>
+        </Card>
+    );
 }
 
 export default MapFilter;
