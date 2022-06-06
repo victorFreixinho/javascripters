@@ -8,7 +8,7 @@ function NotFound() {
     <div className="App">
         <TopBar />
 
-        <div classNam="container">
+        <div className="container">
             <Typography variant="h5" component="div" className="m-5" align="justify">
                 Erro: Tela não encontrada.
             </Typography>
