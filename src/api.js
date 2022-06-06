@@ -4,6 +4,8 @@ const url = "https://localhost:7091";
 const api = axios.create({ baseURL: url });
 
 const Api = {
+  // session
+
   login: ({ email, password }) =>
     api
       .post("/user/login", { email, password })
@@ -14,6 +16,8 @@ const Api = {
         return error;
       }),
 
+  //users
+
   register: ({ email, password, lastname, name }) =>
     api
       .post("/user/register", { email, password, lastname, name })
@@ -23,6 +27,15 @@ const Api = {
       .catch((error) => {
         return error;
       }),
+
+  //diseases
+
+  getDiseases: () => {
+    api
+      .get("/disease/list")
+      .then((response) => ({ ...response.data }))
+      .catch((error) => error);
+  },
 };
 
 export default Api;
