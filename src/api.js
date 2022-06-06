@@ -36,6 +36,17 @@ const Api = {
       .then((response) => ({ ...response.data }))
       .catch((error) => error);
   },
+
+  getOccurrences: ({ states, diseases }) => {
+    api
+      .post("/diseases/occurrences", { states, diseases })
+      .then((response) => {
+        return { ...response.data };
+      })
+      .catch((error) => {
+        return error;
+      });
+  },
 };
 
 export default Api;
