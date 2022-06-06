@@ -74,12 +74,27 @@ function UploadData(props) {
 
     <div className="container">
       <Typography variant="h5" component="div" className="mt-5 mb-3" align="justify">
-        Upload de CSV
+        Upload de Dados
       </Typography>
+
       <Container {...getRootProps({isFocused, isDragAccept, isDragReject})}>
         <input {...getInputProps()} />
         <p>Arraste os arquivos aqui! Ou clique para selecionar os arquivos.</p>
       </Container>
+
+      <div className='mt-3'>
+        <Typography variant="h7" component="div" align="justify">
+          Para inserir novos dados no banco, insira acima um arquivo no formato .tsv cujas linhas sejam como na forma:
+        </Typography>
+        <br />
+        UF NomeDaCidade CodigoIBGE Latitude Longitude NomeDaDoenca DataDeOcorrencia
+        <br />
+        <br />
+        <Typography variant="h7" component="div" align="justify">
+          Segue abaixo um exemplo:
+        </Typography>
+        GO	Abadia de Goiás	520005	-16,7573	-49,4412	Dengue	01-01-1999
+      </div>
     </div>
   </div>
   );
