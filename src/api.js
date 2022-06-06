@@ -6,16 +6,7 @@ const api = axios.create({ baseURL: url });
 const Api = {
   // session
 
-  login: ({ email, password }) =>
-    api
-      .post("/user/login", { email, password })
-      .then((response) => {
-        return { ...response.data };
-      })
-      .catch((error) => {
-        return error;
-      }),
-
+  login: ({ email, password }) => api.post("/user/login", { email, password }),
   //users
 
   register: ({ email, password, lastname, name }) =>
