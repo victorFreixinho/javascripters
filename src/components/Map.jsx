@@ -23,7 +23,7 @@ function Map() {
             />
 
             {markers.map((marker =>
-              <Marker position={marker}>
+              <Marker position={marker} key={marker[0]}>
                 {/* <Popup>
                   A pretty CSS3 popup. <br /> Easily customizable.
                 </Popup> */}
