@@ -17,7 +17,15 @@ const sessionSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.userId = null;
+      state.token = null;
+      state.loading = false;
+      state.error = null;
+      state.signed = false;
+    },
+  },
   extraReducers: {
     [login.pending]: (state, { payload }) => {
       state.loading = true;
@@ -39,6 +47,8 @@ const sessionSlice = createSlice({
     },
   },
 });
+
+export const logoutAction = sessionSlice.actions.logout;
 
 const { reducer } = sessionSlice;
 export default reducer;

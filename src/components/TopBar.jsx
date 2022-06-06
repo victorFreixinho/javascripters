@@ -2,10 +2,17 @@ import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../images/logotipo.png";
 import styles from "./styles/TopBar.module.css";
+import { useDispatch } from "react-redux";
+import { logoutAction } from "../states/modules/session";
+import { useHistory } from "react-router-dom";
 
 function TopBar({ signed }) {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const handleLogoutClick = () => {
-    console.log("logout");
+    dispatch(logoutAction());
+    history.push("/");
   };
 
   return (
