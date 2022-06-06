@@ -15,17 +15,16 @@ function MapFilter() {
 
     // const occurrences = useSelector(selectOccurrences());
 
-    const [doencasSelected, setDoencasSelected] = useState(undefined);
-    const [estadosSelected, setEstadosSelected] = useState(undefined);
+    const [selectedDiseases, setSelectedDiseases] = useState(undefined);
+    const [selectedStates, setSelectedStates] = useState(undefined);
 
 
-    const doencasOptions = ["Malária", "Dengue"];
-    const estadosOptions = ["AC","PA","RO","RR","TO","MA","PB","PE","PI","RN","SE","GO","MS","MT","ES","MG","RJ","SP","RS","SC","AM","AP","AL","BA","CE","PR",];
+    const diseasesOptions = ["Malária", "Dengue"];
+    const statesOptions = ["AC","PA","RO","RR","TO","MA","PB","PE","PI","RN","SE","GO","MS","MT","ES","MG","RJ","SP","RS","SC","AM","AP","AL","BA","CE","PR",];
     
     const myHandleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        
+        // const data = new FormData(event.currentTarget);
         // dispatch(getOccurrences({estadosSelected, doencasSelected}));
     };
 
@@ -50,9 +49,9 @@ function MapFilter() {
                 <Box className="m-4 bg-white">
                   <Autocomplete
                   multiple
-                  options={doencasOptions}
+                  options={diseasesOptions}
                   filterSelectedOptions
-                  value={doencasSelected || []}
+                  value={selectedDiseases || []}
                   onChange={(event, selected_doencas) => {
                     setDoencasSelected(selected_doencas);
                   }}
@@ -65,9 +64,9 @@ function MapFilter() {
                 <Box className="m-4 bg-white">
                   <Autocomplete
                     multiple
-                    options={estadosOptions}
+                    options={statesOptions}
                     filterSelectedOptions
-                    value={estadosSelected || []}
+                    value={selectedStates || []}
                     onChange={(event, selected_estados) => {
                       setEstadosSelected(selected_estados);
                     }}
