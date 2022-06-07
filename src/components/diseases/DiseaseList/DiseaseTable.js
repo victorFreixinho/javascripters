@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,7 +11,7 @@ import Modal from "../../common/modal";
 import { deleteDisease } from "../../../states/modules/diseases";
 
 function DiseaseTable({ DiseaseList }) {
-  //const history = useHistory();
+  const history = useHistory();
 
   const [modal, setModal] = useState({ show: false, disease: {} });
   const [diseaseId, setDiseaseId] = useState(null);
@@ -46,8 +46,10 @@ function DiseaseTable({ DiseaseList }) {
     }
   }, [removedDisease?.data]);
 
-  //   const goToDetails = (disease) =>
-  //     history.push(`${process.env.PUBLIC_URL}/diseases/${disease.id}`);
+  const goToDetails = (disease) => {
+    //history.push(`${process.env.PUBLIC_URL}/diseases/${disease.id}`);
+    return;
+  };
 
   const removeDisease = (disease) => (e) => {
     e.stopPropagation();
@@ -74,7 +76,7 @@ function DiseaseTable({ DiseaseList }) {
           </thead>
           <tbody style={{ cursor: "pointer" }}>
             {DiseaseList.map((disease, index) => (
-              <tr key={index} /*onClick={goToDetails(disease)}*/>
+              <tr key={index} onClick={goToDetails(disease)}>
                 <td data-testid="user-name">
                   <CoronavirusIcon
                     size={17}

@@ -38,8 +38,6 @@ function UserTable({ usersList }) {
   }, [removedUser?.error]);
 
   useEffect(() => {
-    console.log("UseEffect: ", showMessage);
-    toast.success("Qualquer coisa");
     if (showMessage) {
       if (removedUser) {
         toast.success(`Usuário removido com sucesso!`);
@@ -48,7 +46,8 @@ function UserTable({ usersList }) {
   }, [removedUser]);
 
   const goToEditUser = (userId) => (e) => {
-    history.push(`${process.env.PUBLIC_URL}/users/${userId}`);
+    //history.push(`${process.env.PUBLIC_URL}/users/${userId || 1}`);
+    return;
   };
 
   const removeUser = (user) => (e) => {

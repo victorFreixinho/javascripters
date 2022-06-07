@@ -3,6 +3,8 @@ import { ScrollContext } from "react-router-scroll-4";
 import { useSelector } from "react-redux";
 import Home from "./pages/Home";
 import UserList from "./components/users/UserList";
+import EditUser from "./components/users/EditUser";
+import EditDisease from "./components/diseases/EditDisease";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import DiseaseList from "./components/diseases/DiseaseList";
@@ -51,6 +53,20 @@ const SignedRoutes = () => {
         path={`${process.env.PUBLIC_URL}/admin-doenca`}
         component={DoencaForm}
       />
+
+      {
+        // After update is complete:
+        /* <Route
+        exact
+        path={`${process.env.PUBLIC_URL}/users/:userId(\\d+)`}
+        component={EditUser}
+      />
+      <Route
+        exact
+        path={`${process.env.PUBLIC_URL}/diseases/:diseaseId(\\d+)`}
+        component={EditDisease}
+      /> */
+      }
       <Route path="*" component={NotFound} />
     </Switch>
   );
