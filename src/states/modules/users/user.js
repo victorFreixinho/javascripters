@@ -2,10 +2,19 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../../api";
 
 export const register = createAsyncThunk("user/register", async (payload) => {
-  const { history, ...formData } = payload;
+  const { callback, ...formData } = payload;
   console.log("FormData: ", formData);
-  const user = await api.register(formData);
-  return { ...user, history };
+  const user = await api
+    .register(formData)
+    .then((response) => {
+      if (callback) callback(true);
+      return { ...response.data };
+    })
+    .catch((error) => {
+      if (callback) callback(false);
+      return error;
+    });
+  return { ...user };
 });
 
 export const getUsers = createAsyncThunk("user/list", async () => {
@@ -41,14 +50,12 @@ const userSlice = createSlice({
       state.error = payload.error;
     },
     [register.fulfilled]: (state, { payload }) => {
-      console.log("payload: ", payload);
       state.email = payload.email;
       state.userId = payload.userId;
       state.name = payload.name;
       state.lastName = payload.lastName;
       state.error = null;
       state.loading = false;
-      payload.history.push("/login");
     },
 
     [getUsers.pending]: (state) => {
@@ -71,13 +78,11 @@ const userSlice = createSlice({
       state.error = null;
     },
     [deleteUser.rejected]: (state, { payload }) => {
-      console.log("Deleted Payload: ", payload);
       state.loading = false;
       state.removedUser = null;
       state.error = payload.error;
     },
     [deleteUser.fulfilled]: (state, { payload }) => {
-      console.log("Deleted Payload: ", payload);
       state.removedUser = payload ? { data: payload } : null;
       state.error = null;
       state.loading = false;

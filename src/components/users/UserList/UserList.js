@@ -1,24 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Breadcrumb from "../../common/breadcrumb";
-import { useHistory } from "react-router-dom";
 import AddButton from "../../common/AddButton";
 import UserTable from "./userTable";
 import TopBar from "../../TopBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../../states/modules/users";
 import { selectUserList } from "../../../states/modules/users/user.utils";
+import CenteredModal from "../../CenteredModal";
+import AddUserForm from "./AddUserForm";
 
 const UserList = () => {
   const dispatch = useDispatch();
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
 
   const users = useSelector(selectUserList);
-  const history = useHistory();
-  const goToAddUser = () => history.push(`${process.env.PUBLIC_URL}/users/add`);
 
   return (
     <>
@@ -35,7 +35,7 @@ const UserList = () => {
                   </div>
                   <div className="col text-end">
                     <AddButton
-                      onClick={goToAddUser}
+                      onClick={() => setModalShow(true)}
                       toolTipMsg={"Adicionar Um Novo Usuário"}
                     ></AddButton>
                   </div>
@@ -48,6 +48,12 @@ const UserList = () => {
           </div>
         </div>
       </div>
+      <CenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        title={"Adicionar um novo usuário"}
+        body={AddUserForm}
+      />
     </>
   );
 };

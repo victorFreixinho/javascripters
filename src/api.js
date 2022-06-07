@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://localhost:44330";
+const url = "https://71ac-200-20-225-239.sa.ngrok.io:44330";
 const api = axios.create({ baseURL: url });
 
 const Api = {
@@ -10,14 +10,7 @@ const Api = {
   //users
 
   register: ({ email, password, lastname, name }) =>
-    api
-      .post("/user/register", { email, password, lastname, name })
-      .then((response) => {
-        return { ...response.data };
-      })
-      .catch((error) => {
-        return error;
-      }),
+    api.post("/user/register", { email, password, lastname, name }),
 
   getUsers: () => api.get("/user/list"),
 
