@@ -4,12 +4,14 @@ import CoronavirusIcon from "@mui/icons-material/Coronavirus";
 import { useDispatch, useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { Trash2 } from "react-feather";
 import { Button, Badge } from "reactstrap";
 
 import Modal from "../../common/modal";
 import { deleteDisease } from "../../../states/modules/diseases";
 
+toast.configure();
 function DiseaseTable({ DiseaseList }) {
   //const history = useHistory();
 
