@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 //import { useDispatch, useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { Trash2, User } from "react-feather";
 import { Button, Badge } from "reactstrap";
 
@@ -10,6 +11,7 @@ import Modal from "../../common/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser } from "../../../states/modules/users";
 
+toast.configure();
 function UserTable({ usersList }) {
   const history = useHistory();
 
