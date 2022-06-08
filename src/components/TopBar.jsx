@@ -59,12 +59,12 @@ function TopBar() {
             </>
           ) : (
             <>
-              <Nav.Link href="/login" className="px-1">
+              {/* <Nav.Link href="/login" className="px-1">
                 <h3 className={styles.h3_options}>&nbsp; &nbsp;Login</h3>
               </Nav.Link>
               <Nav.Link href="/signup" className="px-1">
                 <h3 className={styles.h3_options}>&nbsp; &nbsp;Cadastro</h3>
-              </Nav.Link>
+              </Nav.Link> */}
             </>
           )}
         </Nav>
