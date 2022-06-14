@@ -12,7 +12,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { register } from "../states/modules/users";
-import TopBar from '../components/TopBar';
+import TopBar from "../components/TopBar";
 
 const theme = createTheme();
 
@@ -113,13 +113,13 @@ export default function SignUp({ history }) {
               >
                 Cadastrar
               </Button>
-              <Grid container justifyContent="flex-end">
+              {/* <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link href="/login" variant="body2">
                     Já possui uma conta? Faça login!
                   </Link>
                 </Grid>
-              </Grid>
+              </Grid> */}
             </Box>
           </Box>
         </Container>

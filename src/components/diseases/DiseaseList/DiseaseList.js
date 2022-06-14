@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Breadcrumb from "../../common/breadcrumb";
 //import { useHistory } from "react-router-dom";
@@ -8,38 +8,18 @@ import TopBar from "../../TopBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getDiseases } from "../../../states/modules/diseases";
 import { selectDiseases } from "../../../states/modules/diseases/disease.utils";
+import CenteredModal from "../../CenteredModal";
+import AddDiseaseForm from "./AddDiseaseForm";
 
 const DiseaseList = () => {
   const dispatch = useDispatch();
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     dispatch(getDiseases());
-  }, [dispatch]);
+  }, [dispatch, modalShow]);
 
   const diseases = useSelector(selectDiseases);
-  console.log("Diseases: ", diseases);
-
-  // const diseases = [
-  //   {
-  //     id: 1,
-  //     name: "Dengue",
-  //     rate: "Alta",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Febre Amarela",
-  //     rate: "Moderada",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Meningite",
-  //     rate: "Baixa",
-  //   },
-  // ];
-
-  //  const history = useHistory();
-  //   const goToAddDisease = () =>
-  //     history.push(`${process.env.PUBLIC_URL}/diseases/add`);
 
   return (
     <>
@@ -56,7 +36,7 @@ const DiseaseList = () => {
                   </div>
                   <div className="col text-end">
                     <AddButton
-                      //onClick={goToAddDisease}
+                      onClick={() => setModalShow(true)}
                       toolTipMsg={"Adicionar uma nova Doença"}
                     ></AddButton>
                   </div>
@@ -69,6 +49,12 @@ const DiseaseList = () => {
           </div>
         </div>
       </div>
+      <CenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        title={"Adicionar uma nova doença"}
+        body={AddDiseaseForm}
+      />
     </>
   );
 };

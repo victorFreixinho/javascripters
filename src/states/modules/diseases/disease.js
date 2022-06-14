@@ -36,11 +36,19 @@ export const setCsvData = createAsyncThunk(
 
 export const createDisease = createAsyncThunk(
   "diseases/create",
-  async (disease) => {
-    await api
+  async (payload) => {
+    const { callback, ...disease } = payload;
+    const response = await api
       .createDisease(disease)
-      .then((response) => ({ response, disease }))
-      .catch((error) => error);
+      .then((response) => {
+        if (callback) callback(true);
+        return { response };
+      })
+      .catch((error) => {
+        if (callback) callback(false);
+        return error;
+      });
+    return { ...response, disease };
   }
 );
 
@@ -124,7 +132,7 @@ const diseasesSlice = createSlice({
       console.log("Response: ", response);
       state.error = null;
       state.loading = false;
-      state.diseases.push(disease);
+      //state.diseases.push({});
     },
   },
 });

@@ -88,13 +88,13 @@ export default function Login({ history }) {
               >
                 Entrar
               </Button>
-              <Grid container justifyContent="flex-end">
+              {/* <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link href="/signup" variant="body2">
                     Ainda não possui uma conta? Cadastre-se!
                   </Link>
                 </Grid>
-              </Grid>
+              </Grid> */}
             </Box>
           </Box>
         </Container>

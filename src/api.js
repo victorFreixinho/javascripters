@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://71ac-200-20-225-239.sa.ngrok.io:44330";
+const url = "http://idqbrn-backend.us-east-1.elasticbeanstalk.com/";
 const api = axios.create({ baseURL: url });
 
 const Api = {

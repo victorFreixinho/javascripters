@@ -50,10 +50,6 @@ const userSlice = createSlice({
       state.error = payload.error;
     },
     [register.fulfilled]: (state, { payload }) => {
-      state.email = payload.email;
-      state.userId = payload.userId;
-      state.name = payload.name;
-      state.lastName = payload.lastName;
       state.error = null;
       state.loading = false;
     },

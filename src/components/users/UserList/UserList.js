@@ -16,7 +16,7 @@ const UserList = () => {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch]);
+  }, [dispatch, modalShow]);
 
   const users = useSelector(selectUserList);
 

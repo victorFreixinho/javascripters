@@ -81,11 +81,11 @@ const UnsignedRoutes = () => {
         component={() => <Home />}
       />
       <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login} />
-      <Route
+      {/* <Route
         exact
         path={`${process.env.PUBLIC_URL}/signup`}
         component={SignUp}
-      />
+      /> */}
       <Route path="*" component={NotFound} />
     </Switch>
   );

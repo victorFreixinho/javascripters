@@ -16,7 +16,6 @@ function MapFilter() {
   const dispatch = useDispatch();
 
   const occurrences = useSelector(selectOccurrences);
-  console.log("Occurrences: ", occurrences);
 
   const [selectedDiseases, setSelectedDiseases] = useState(undefined);
   const [selectedStates, setSelectedStates] = useState(undefined);
