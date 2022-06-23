@@ -25,7 +25,7 @@ const UserList = () => {
       <TopBar />
       <Breadcrumb title="Gestão de Usuários" current="Gestão de Usuários" />
       <div className="container-fluid">
-        <div className="row">
+        <div className="row mx-2">
           <div className="col-sm-12">
             <div className="card">
               <div className="card-header">

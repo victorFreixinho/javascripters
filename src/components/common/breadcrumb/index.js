@@ -9,7 +9,7 @@ const Breadcrumb = ({ title, parent, current }) => {
     <Fragment>
       <div className="container-fluid">
         <div className="page-header">
-          <div className="row">
+          <div className="row mt-5 mx-2">
             <div className="col">
               <div className="page-header-left">
                 <h3>{title}</h3>

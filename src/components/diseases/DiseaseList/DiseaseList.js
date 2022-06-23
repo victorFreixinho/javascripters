@@ -26,7 +26,7 @@ const DiseaseList = () => {
       <TopBar />
       <Breadcrumb title="Gestão de Doenças" current="Gestão de Doenças" />
       <div className="container-fluid">
-        <div className="row">
+        <div className="row mx-2">
           <div className="col-sm-12">
             <div className="card">
               <div className="card-header">
