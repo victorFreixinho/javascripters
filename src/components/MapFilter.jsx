@@ -63,7 +63,7 @@ function MapFilter() {
 
   return (
     <Card
-      sx={{ width: "30vw", height: "70vh", minWidth: 300, margin: 5 }}
+      sx={{ width: "100%", height: "85%", margin: 5 }} // this must be turn into flex
       className="bg-light"
     >
       <Typography variant="h5" component="div" className="m-4">
